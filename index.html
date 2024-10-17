@@ -14,30 +14,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
             overflow-x: hidden;
+            background-color: #1a1a1a;
         }
         header {
             position: fixed;
             width: 100%;
-            background-color: rgba(0, 123, 255, 0.8);
-            color: white;
-            padding: 15px 0;
+            background-color: #111;
+            color: #fff;
+            padding: 20px 0;
             z-index: 1000;
             transition: background-color 0.3s;
         }
         header.scrolled {
-            background-color: #007bff;
+            background-color: #000;
         }
         header nav a {
-            color: white;
+            color: #fff;
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.2rem;
         }
         header nav a:hover {
             text-decoration: underline;
+            color: #00d4ff;
         }
         .hero-section {
             position: relative;
@@ -48,6 +51,7 @@
             justify-content: center;
             color: white;
             text-align: center;
+            overflow: hidden;
         }
         .hero-section .overlay {
             position: absolute;
@@ -55,26 +59,39 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
         }
         .hero-section .content {
             position: relative;
             z-index: 2;
+            animation: fadeInUp 2s ease-in-out;
         }
         .hero-section h1 {
-            font-size: 4rem;
+            font-size: 5rem;
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 20px;
-            animation: fadeIn 2s ease-in-out;
+            color: #00d4ff;
+            text-transform: uppercase;
         }
         .hero-section p {
-            font-size: 1.5rem;
-            animation: fadeIn 3s ease-in-out;
+            font-size: 2rem;
+            color: #f1f1f1;
+            margin-bottom: 40px;
         }
-        @keyframes fadeIn {
+        .hero-section .btn-primary {
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            border-radius: 50px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .hero-section .btn-primary:hover {
+            background-color: #00b3e6;
+            transform: scale(1.1);
+        }
+        @keyframes fadeInUp {
             0% {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(50px);
             }
             100% {
                 opacity: 1;
@@ -83,42 +100,59 @@
         }
         .parallax-section {
             background: url('https://via.placeholder.com/1920x600') center/cover fixed no-repeat;
-            padding: 100px 0;
-            color: white;
+            padding: 150px 20px;
+            color: #fff;
             text-align: center;
+            font-size: 2rem;
+            letter-spacing: 1.2px;
         }
         .container {
             max-width: 1200px;
-            margin: 80px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            margin: 100px auto;
+            padding: 40px;
+            background: #222;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        .section-title {
+            font-weight: 800;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #00d4ff;
+            text-align: center;
+            text-transform: uppercase;
         }
         .service-card {
             border: none;
-            padding: 20px;
-            border-radius: 8px;
+            padding: 30px;
+            border-radius: 12px;
             background: linear-gradient(to right, #007bff, #00d4ff);
             color: white;
             text-align: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s, box-shadow 0.4s;
+            font-size: 1.3rem;
         }
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         .contact-section {
-            background: #007bff;
+            background: linear-gradient(135deg, #007bff, #001f3f);
             color: white;
-            padding: 50px 20px;
+            padding: 100px 20px;
             text-align: center;
+            clip-path: polygon(0 0, 100% 5%, 100% 100%, 0 95%);
+        }
+        .contact-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: #00d4ff;
         }
         footer {
             text-align: center;
-            padding: 20px;
-            background-color: #333;
+            padding: 30px;
+            background-color: #000;
             color: #fff;
         }
     </style>
@@ -127,7 +161,7 @@
     <!-- Header Section -->
     <header>
         <div class="container">
-            <h1>아울러 봇 연구소</h1>
+            <h1 style="font-size: 3rem;">아울러 봇 연구소</h1>
             <nav>
                 <ul class="nav justify-content-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">홈</a></li>
@@ -144,16 +178,15 @@
     <section class="hero-section">
         <div class="overlay"></div>
         <div class="content">
-            <h1>디지털 취약계층을 위한 챗봇 개발 및 보급</h1>
+            <h1>기술로 세상을 바꿉니다</h1>
             <p>아울러 봇 연구소는 모두가 기술에 쉽게 접근할 수 있도록 지원합니다.</p>
-            <a href="#services" class="btn btn-primary mt-3">자세히 알아보기</a>
+            <a href="#services" class="btn btn-primary">자세히 알아보기</a>
         </div>
     </section>
 
     <!-- Parallax Section -->
     <section class="parallax-section">
-        <h2>기술로 더 나은 미래를 만듭니다</h2>
-        <p>우리는 누구나 접근 가능한 기술을 제공합니다.</p>
+        기술로 더 나은 미래를 만듭니다. 우리는 누구나 접근 가능한 기술을 제공합니다.
     </section>
 
     <!-- Services Section -->
@@ -188,7 +221,7 @@
         <div class="container">
             <h2>문의 사항이 있으신가요?</h2>
             <p>저희에게 연락 주시면 최선을 다해 도와드리겠습니다.</p>
-            <a href="contact.html" class="btn btn-light mt-3">연락하기</a>
+            <a href="contact.html" class="btn btn-light btn-lg mt-3">연락하기</a>
         </div>
     </section>
 

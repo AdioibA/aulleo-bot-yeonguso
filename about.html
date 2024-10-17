@@ -8,48 +8,89 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
-            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            background-color: #1a1a1a;
+            overflow-x: hidden;
         }
         header {
-            background-color: #007bff;
-            color: white;
+            position: fixed;
+            width: 100%;
+            background-color: #111;
+            color: #fff;
             padding: 20px 0;
-            text-align: center;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        header.scrolled {
+            background-color: #000;
         }
         header nav a {
-            color: white;
+            color: #fff;
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
+            font-size: 1.2rem;
         }
         header nav a:hover {
             text-decoration: underline;
+            color: #00d4ff;
         }
-        .section-title {
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #007bff;
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            background: url('https://via.placeholder.com/1920x600') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        .hero-section .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .hero-section .content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 2s ease-in-out;
+        }
+        .hero-section h1 {
+            font-size: 4rem;
+            font-family: 'Montserrat', sans-serif;
+            color: #00d4ff;
+            text-transform: uppercase;
         }
         .container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 40px;
+            background: #222;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        .section-title {
+            font-weight: 800;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #00d4ff;
+            text-align: center;
+            text-transform: uppercase;
         }
         footer {
             text-align: center;
-            padding: 10px;
-            background-color: #333;
+            padding: 30px;
+            background-color: #000;
             color: #fff;
-            margin-top: 40px;
         }
     </style>
 </head>
@@ -57,7 +98,7 @@
     <!-- Header Section -->
     <header>
         <div class="container">
-            <h1>아울러 봇 연구소</h1>
+            <h1 style="font-size: 3rem;">아울러 봇 연구소</h1>
             <nav>
                 <ul class="nav justify-content-center">
                     <li class="nav-item"><a class="nav-link" href="index.html">홈</a></li>
@@ -70,12 +111,20 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>회사 소개</h1>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section id="about" class="about-section">
         <div class="container">
-            <h2 class="section-title">회사 소개</h2>
-            <p>아울러 봇 연구소는 디지털 취약계층이 많은 지역에 챗봇을 보급하고 컨설팅하여, 기술로 더 나은 삶을 만들기 위해 노력하고 있습니다. 저희는 기술을 통한 사회적 가치를 창출하고자 하며, 누구나 쉽게 접근할 수 있는 챗봇 솔루션을 제공합니다.</p>
-            <p>아울러 봇 연구소의 목표는 디지털 격차를 줄이고, 특히 장애인, 어르신 등 디지털 접근이 어려운 사람들에게 기술의 혜택을 제공하는 것입니다. 이를 위해, 맞춤형 챗봇 개발과 보급을 통해 사용자들의 편의를 극대화하고 있습니다.</p>
+            <h2 class="section-title">아울러 봇 연구소에 대해</h2>
+            <p>아울러 봇 연구소는 디지털 취약계층이 많은 지역에 챗봇을 보급하고, 컨설팅하여 기술로 더 나은 삶을 만들기 위해 노력하고 있습니다.</p>
+            <p>우리의 비전은 누구나 기술에 접근할 수 있는 세상을 만드는 것입니다. 우리는 최신 기술을 활용해 장애인, 어르신 등 디지털 약자들이 쉽고 편리하게 사용할 수 있는 챗봇을 개발하고 있습니다.</p>
         </div>
     </section>
 
@@ -86,6 +135,19 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from(".about-section", {
+            scrollTrigger: {
+                trigger: ".about-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+        });
+    </script>
 </body>
 </html>
