@@ -4,23 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아울러 봇 연구소</title>
+    <title>아울러 봇 연구소 - 미래를 위한 챗봇 솔루션</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
             color: #333;
+            overflow-x: hidden;
         }
         header {
-            background-color: #007bff;
+            position: fixed;
+            width: 100%;
+            background-color: rgba(0, 123, 255, 0.8);
             color: white;
-            padding: 20px 0;
-            text-align: center;
+            padding: 15px 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        header.scrolled {
+            background-color: #007bff;
         }
         header nav a {
             color: white;
@@ -32,49 +40,86 @@
             text-decoration: underline;
         }
         .hero-section {
-            background-image: url('https://via.placeholder.com/1500x600');
-            background-size: cover;
-            background-position: center;
+            position: relative;
+            height: 100vh;
+            background: url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            padding: 150px 0;
             text-align: center;
+        }
+        .hero-section .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero-section .content {
+            position: relative;
+            z-index: 2;
         }
         .hero-section h1 {
             font-size: 4rem;
+            font-family: 'Montserrat', sans-serif;
             margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
         }
         .hero-section p {
             font-size: 1.5rem;
+            animation: fadeIn 3s ease-in-out;
         }
-        .section-title {
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #007bff;
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .parallax-section {
+            background: url('https://via.placeholder.com/1920x600') center/cover fixed no-repeat;
+            padding: 100px 0;
+            color: white;
+            text-align: center;
         }
         .container {
-            max-width: 1000px;
-            margin: 40px auto;
+            max-width: 1200px;
+            margin: 80px auto;
             padding: 20px;
             background: white;
             border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         }
         .service-card {
-            border: 1px solid #ddd;
+            border: none;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
+            background: linear-gradient(to right, #007bff, #00d4ff);
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .service-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .contact-section {
+            background: #007bff;
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
         }
         footer {
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             background-color: #333;
             color: #fff;
-            margin-top: 40px;
         }
     </style>
 </head>
@@ -97,10 +142,18 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="container">
+        <div class="overlay"></div>
+        <div class="content">
             <h1>디지털 취약계층을 위한 챗봇 개발 및 보급</h1>
             <p>아울러 봇 연구소는 모두가 기술에 쉽게 접근할 수 있도록 지원합니다.</p>
+            <a href="#services" class="btn btn-primary mt-3">자세히 알아보기</a>
         </div>
+    </section>
+
+    <!-- Parallax Section -->
+    <section class="parallax-section">
+        <h2>기술로 더 나은 미래를 만듭니다</h2>
+        <p>우리는 누구나 접근 가능한 기술을 제공합니다.</p>
     </section>
 
     <!-- Services Section -->
@@ -130,6 +183,15 @@
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2>문의 사항이 있으신가요?</h2>
+            <p>저희에게 연락 주시면 최선을 다해 도와드리겠습니다.</p>
+            <a href="contact.html" class="btn btn-light mt-3">연락하기</a>
+        </div>
+    </section>
+
     <!-- Footer Section -->
     <footer>
         <div class="container">
@@ -137,10 +199,25 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        gsap.registerPlugin(ScrollTrigger);
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        gsap.from(".service-card", {
+            scrollTrigger: {
+                trigger: ".services-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            stagger: 0.3
+        });
     </script>
 </body>
 </html>
